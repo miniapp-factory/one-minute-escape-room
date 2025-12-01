@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface PuzzleProps {
   onAnswer: (answer: string) => void;
@@ -11,6 +11,11 @@ interface PuzzleProps {
 export default function Puzzle({ onAnswer, emojis, correctIndex }: PuzzleProps) {
   const [selected, setSelected] = useState<number | null>(null);
   const [hint, setHint] = useState("");
+
+  useEffect(() => {
+    setSelected(null);
+    setHint("");
+  }, [emojis]);
 
   const handleClick = (index: number) => {
     setSelected(index);
