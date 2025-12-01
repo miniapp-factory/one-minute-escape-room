@@ -5,6 +5,7 @@ import Timer from "./timer";
 import Puzzle from "./puzzle";
 import SuccessScreen from "./success-screen";
 import FailureScreen from "./failure-screen";
+import { Button } from "@/components/ui/button";
 
 const puzzles = [
   { emojis: ["🟥","🟥","🟥","🟥","🟥","🟥","🟥","🟥","🟦"], correctIndex: 8 },
@@ -20,7 +21,7 @@ const puzzles = [
 ];
 
 export default function EscapeRoom() {
-  const [phase, setPhase] = useState<"puzzle" | "success" | "failure" | "completed">("puzzle");
+  const [phase, setPhase] = useState<"start" | "puzzle" | "success" | "failure" | "completed">("start");
   const [puzzleCount, setPuzzleCount] = useState(0);
   const [puzzle, setPuzzle] = useState<{ emojis: string[]; correctIndex: number }>({
     emojis: [],
@@ -64,6 +65,12 @@ export default function EscapeRoom() {
     setPhase("failure");
   };
 
+  const startGame = () => {
+    setPuzzleCount(0);
+    setGameKey(1);
+    newPuzzle();
+  };
+
   const resetGame = () => {
     setPuzzleCount(0);
     const baseEmoji = "🟥";
@@ -74,12 +81,17 @@ export default function EscapeRoom() {
     emojis[correctIndex] = oddEmoji;
     setPuzzle({ emojis, correctIndex });
     setPhase("puzzle");
-    setGameKey((prev) => prev + 1);
+    setGameKey(1);
     setPuzzleKey((prev) => prev + 1);
   };
 
   return (
     <div className="w-full max-w-md mx-auto bg-white rounded-xl shadow-md p-6">
+      {phase === "start" && (
+        <div className="flex justify-center">
+          <Button onClick={startGame}>Start</Button>
+        </div>
+      )}
       {phase === "puzzle" && (
         <>
           <Timer key={gameKey} duration={60} onTimeUp={handleGameTimeUp} />
