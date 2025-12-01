@@ -33,7 +33,13 @@ export default function EscapeRoom() {
   const handleAnswer = (answer: string) => {
     const correct = answer.trim().toLowerCase() === "correct";
     if (correct) {
-      setPhase("success");
+      const newCount = puzzleCount + 1;
+      setPuzzleCount(newCount);
+      if (newCount === 10) {
+        setPhase("completed");
+      } else {
+        setPhase("success");
+      }
     } else {
       // hint will be shown by Puzzle component
     }
@@ -58,7 +64,8 @@ export default function EscapeRoom() {
     setPhase("failure");
   };
 
-  const reset = () => {
+  const resetGame = () => {
+    setPuzzleCount(0);
     const baseEmoji = "🟥";
     const correctIndex = Math.floor(Math.random() * 9);
     const alternatives = ["🟦", "🟨", "🟩", "🟪", "🟫", "🟧"];
