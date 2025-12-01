@@ -20,7 +20,8 @@ const puzzles = [
 ];
 
 export default function EscapeRoom() {
-  const [phase, setPhase] = useState<"puzzle" | "success" | "failure">("puzzle");
+  const [phase, setPhase] = useState<"puzzle" | "success" | "failure" | "completed">("puzzle");
+  const [puzzleCount, setPuzzleCount] = useState(0);
   const [puzzle, setPuzzle] = useState<{ emojis: string[]; correctIndex: number }>({
     emojis: [],
     correctIndex: 0,
@@ -37,6 +38,17 @@ export default function EscapeRoom() {
       // hint will be shown by Puzzle component
     }
   };
+  const newPuzzle = () => {
+      const baseEmoji = "🟥";
+      const correctIndex = Math.floor(Math.random() * 9);
+      const alternatives = ["🟦", "🟨", "🟩", "🟪", "🟫", "🟧"];
+      const oddEmoji = alternatives[Math.floor(Math.random() * alternatives.length)];
+      const emojis = Array(9).fill(baseEmoji);
+      emojis[correctIndex] = oddEmoji;
+      setPuzzle({ emojis, correctIndex });
+      setPhase("puzzle");
+      setPuzzleKey((prev) => prev + 1);
+    };
 
   const handleTimeUp = () => {
     setPhase("failure");
@@ -73,8 +85,9 @@ export default function EscapeRoom() {
           />
         </>
       )}
-      {phase === "success" && <SuccessScreen onNewPuzzle={reset} />}
-      {phase === "failure" && <FailureScreen onRetry={reset} />}
+      {phase === "success" && <SuccessScreen onNewPuzzle={newPuzzle} isFinal={false} />}
+      {phase === "completed" && <SuccessScreen onNewPuzzle={resetGame} isFinal={true} />}
+      {phase === "failure" && <FailureScreen onRetry={resetGame} />}
     </div>
   );
 }
