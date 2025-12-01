@@ -25,7 +25,6 @@ export default function EscapeRoom() {
 
   const reset = () => {
     setPhase("puzzle");
-    setTimeUp(false);
   };
 
   return (
