@@ -5,11 +5,10 @@ import Timer from "./timer";
 import Puzzle from "./puzzle";
 import SuccessScreen from "./success-screen";
 import FailureScreen from "./failure-screen";
-import { Button } from "@/components/ui/button";
 
 export default function EscapeRoom() {
   const [phase, setPhase] = useState<"puzzle" | "success" | "failure">("puzzle");
-  const [timeUp, setTimeUp] = useState(false);
+  // const [timeUp, setTimeUp] = useState(false);
 
   const handleAnswer = (answer: string) => {
     const correct = answer.trim().toLowerCase() === "echo";

@@ -9,7 +9,7 @@ interface FailureScreenProps {
 export default function FailureScreen({ onRetry }: FailureScreenProps) {
   return (
     <div className="text-center">
-      <h2 className="text-2xl font-semibold mb-4">Time's up!</h2>
+      <h2 className="text-2xl font-semibold mb-4">Time&#39;s up!</h2>
       <p className="mb-6">Better luck next time.</p>
       <Button onClick={onRetry}>Try Again</Button>
     </div>
