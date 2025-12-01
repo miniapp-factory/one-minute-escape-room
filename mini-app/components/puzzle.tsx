@@ -4,14 +4,13 @@ import { useState } from "react";
 
 interface PuzzleProps {
   onAnswer: (answer: string) => void;
+  emojis: string[];
+  correctIndex: number;
 }
 
-export default function Puzzle({ onAnswer }: PuzzleProps) {
-  const emojis = ["🟥", "🟥", "🟥", "🟥", "🟥", "🟥", "🟥", "🟥", "🟦"];
+export default function Puzzle({ onAnswer, emojis, correctIndex }: PuzzleProps) {
   const [selected, setSelected] = useState<number | null>(null);
   const [hint, setHint] = useState("");
-
-  const correctIndex = emojis.findIndex((e) => e === "🟦");
 
   const handleClick = (index: number) => {
     setSelected(index);

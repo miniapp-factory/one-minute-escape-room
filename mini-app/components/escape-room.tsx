@@ -6,8 +6,22 @@ import Puzzle from "./puzzle";
 import SuccessScreen from "./success-screen";
 import FailureScreen from "./failure-screen";
 
+const puzzles = [
+  { emojis: ["🟥","🟥","🟥","🟥","🟥","🟥","🟥","🟥","🟦"], correctIndex: 8 },
+  { emojis: ["🟩","🟩","🟩","🟩","🟩","🟩","🟩","🟩","🟨"], correctIndex: 8 },
+  { emojis: ["🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟥"], correctIndex: 8 },
+  { emojis: ["🟨","🟨","🟨","🟨","🟨","🟨","🟨","🟨","🟩"], correctIndex: 8 },
+  { emojis: ["🟪","🟪","🟪","🟪","🟪","🟪","🟪","🟪","🟫"], correctIndex: 8 },
+  { emojis: ["🟫","🟫","🟫","🟫","🟫","🟫","🟫","🟫","🟪"], correctIndex: 8 },
+  { emojis: ["🟧","🟧","🟧","🟧","🟧","🟧","🟧","🟧","🟪"], correctIndex: 8 },
+  { emojis: ["🟪","🟪","🟪","🟪","🟪","🟪","🟪","🟪","🟧"], correctIndex: 8 },
+  { emojis: ["🟥","🟥","🟥","🟥","🟥","🟥","🟥","🟥","🟩"], correctIndex: 8 },
+  { emojis: ["🟩","🟩","🟩","🟩","🟩","🟩","🟩","🟩","🟥"], correctIndex: 8 },
+];
+
 export default function EscapeRoom() {
   const [phase, setPhase] = useState<"puzzle" | "success" | "failure">("puzzle");
+  const [currentPuzzleIndex, setCurrentPuzzleIndex] = useState<number>(0);
   // const [timeUp, setTimeUp] = useState(false);
 
   const handleAnswer = (answer: string) => {
@@ -25,6 +39,7 @@ export default function EscapeRoom() {
 
   const reset = () => {
     setPhase("puzzle");
+    setCurrentPuzzleIndex(Math.floor(Math.random() * puzzles.length));
   };
 
   return (
@@ -32,7 +47,12 @@ export default function EscapeRoom() {
       {phase === "puzzle" && (
         <>
           <Timer duration={3} onTimeUp={handleTimeUp} />
-          <Puzzle onAnswer={handleAnswer} />
+          <Puzzle
+            emojis={puzzles[currentPuzzleIndex].emojis}
+            correctIndex={puzzles[currentPuzzleIndex].correctIndex}
+            onAnswer={handleAnswer}
+            key={currentPuzzleIndex}
+          />
         </>
       )}
       {phase === "success" && <SuccessScreen onNewPuzzle={reset} />}
