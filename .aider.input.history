@@ -58,3 +58,15 @@
 +When open the app it should first show the Start Button. Then proceed to answer the 10 puzzles.
 +
 +The 60 seconds should will also continue until the 
+
+# 2025-12-01 08:22:39.458080
++Change the  3 seconds to 6 seconds in this part "Tap the card that is different from the others within 3 seconds"
++
++Also add numbering in each puzzle 1 to 10.
++separate the Timer 60 seconds in the Top. Make it Total Time: 60 seconds and it will continue to reduce the time when until it reach the Number 10 puzzle.
+
+# 2025-12-01 08:22:39.458580
++Change the  3 seconds to 6 seconds in this part "Tap the card that is different from the others within 3 seconds"
++
++Also add numbering in each puzzle 1 to 10.
++separate the Timer 60 seconds in the Top. Make it Total Time: 60 seconds and it will continue to reduce the time when until it reach the Number 10 puzzle.
