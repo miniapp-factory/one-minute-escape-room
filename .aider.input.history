@@ -70,3 +70,11 @@
 +
 +Also add numbering in each puzzle 1 to 10.
 +separate the Timer 60 seconds in the Top. Make it Total Time: 60 seconds and it will continue to reduce the time when until it reach the Number 10 puzzle.
+
+# 2025-12-01 08:35:50.708406
++Remove the part,  Time Left: 60 seconds.
++and the Total Time: 60 seconds should reduce the time when start the game and Don't reset the time until all the puzzle answered
+
+# 2025-12-01 08:35:50.709423
++Remove the part,  Time Left: 60 seconds.
++and the Total Time: 60 seconds should reduce the time when start the game and Don't reset the time until all the puzzle answered
