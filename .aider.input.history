@@ -30,3 +30,9 @@
 
 # 2025-12-01 07:01:21.174379
 +when pressing next puzzle it should generate other cards. Atleast 10 games with different cards and have odd one
+
+# 2025-12-01 07:18:46.560077
++Fix the  problem that it doesn't change the puzzle after answering ang clicking the new puzzle.
+
+# 2025-12-01 07:18:46.560395
++Fix the  problem that it doesn't change the puzzle after answering ang clicking the new puzzle.
