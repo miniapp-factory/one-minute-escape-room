@@ -11,7 +11,7 @@ export default function EscapeRoom() {
   // const [timeUp, setTimeUp] = useState(false);
 
   const handleAnswer = (answer: string) => {
-    const correct = answer.trim().toLowerCase() === "echo";
+    const correct = answer.trim().toLowerCase() === "correct";
     if (correct) {
       setPhase("success");
     } else {
@@ -31,7 +31,7 @@ export default function EscapeRoom() {
     <div className="w-full max-w-md mx-auto bg-white rounded-xl shadow-md p-6">
       {phase === "puzzle" && (
         <>
-          <Timer duration={60} onTimeUp={handleTimeUp} />
+          <Timer duration={3} onTimeUp={handleTimeUp} />
           <Puzzle onAnswer={handleAnswer} />
         </>
       )}

@@ -1,44 +1,41 @@
 "use client";
 
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 
 interface PuzzleProps {
   onAnswer: (answer: string) => void;
 }
 
 export default function Puzzle({ onAnswer }: PuzzleProps) {
-  const [answer, setAnswer] = useState("");
+  const emojis = ["🟥", "🟥", "🟥", "🟥", "🟥", "🟥", "🟥", "🟥", "🟦"];
+  const [selected, setSelected] = useState<number | null>(null);
   const [hint, setHint] = useState("");
 
-  const handleSubmit = () => {
-    const trimmed = answer.trim();
-    if (trimmed === "") return;
-    const correct = trimmed.toLowerCase() === "echo";
-    if (correct) {
-      onAnswer(trimmed);
+  const correctIndex = emojis.findIndex((e) => e === "🟦");
+
+  const handleClick = (index: number) => {
+    setSelected(index);
+    if (index === correctIndex) {
+      onAnswer("correct");
     } else {
-      setHint("It repeats what you say.");
+      setHint("Try again");
     }
   };
 
   return (
     <div className="mt-4">
-      <h2 className="text-xl font-semibold mb-2">Riddle</h2>
-      <p className="mb-4">
-        I speak without a mouth and hear without ears. I have nobody, but I come alive with wind. What
-        am I?
-      </p>
-      <div className="flex gap-2">
-        <Input
-          type="text"
-          placeholder="Your answer"
-          value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
-        />
-        <Button onClick={handleSubmit}>Submit</Button>
+      <h2 className="text-xl font-semibold mb-2">Find the different card</h2>
+      <p className="mb-4">Tap the card that is different from the others within 3 seconds.</p>
+      <div className="grid grid-cols-3 gap-2">
+        {emojis.map((emoji, idx) => (
+          <button
+            key={idx}
+            className="p-4 text-4xl rounded-lg border hover:bg-gray-100"
+            onClick={() => handleClick(idx)}
+          >
+            {emoji}
+          </button>
+        ))}
       </div>
       {hint && <p className="mt-2 text-muted-foreground">{hint}</p>}
     </div>
