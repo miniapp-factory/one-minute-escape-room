@@ -6,9 +6,10 @@ interface PuzzleProps {
   onAnswer: (answer: string) => void;
   emojis: string[];
   correctIndex: number;
+  puzzleNumber: number;
 }
 
-export default function Puzzle({ onAnswer, emojis, correctIndex }: PuzzleProps) {
+export default function Puzzle({ onAnswer, emojis, correctIndex, puzzleNumber }: PuzzleProps) {
   const [selected, setSelected] = useState<number | null>(null);
   const [hint, setHint] = useState("");
 
@@ -29,7 +30,8 @@ export default function Puzzle({ onAnswer, emojis, correctIndex }: PuzzleProps) 
   return (
     <div className="mt-4">
       <h2 className="text-xl font-semibold mb-2">Find the different card</h2>
-      <p className="mb-4">Tap the card that is different from the others within 3 seconds.</p>
+      <h3 className="text-lg font-medium mb-2">Puzzle {puzzleNumber}</h3>
+      <p className="mb-4">Tap the card that is different from the others within 6 seconds.</p>
       <div className="grid grid-cols-3 gap-2">
         {emojis.map((emoji, idx) => (
           <button

@@ -94,12 +94,14 @@ export default function EscapeRoom() {
       )}
       {phase === "puzzle" && (
         <>
+          <div className="text-center font-semibold mb-2">Total Time: 60 seconds</div>
           <Timer key={gameKey} duration={60} onTimeUp={handleGameTimeUp} />
           <Timer key={puzzleKey} duration={6} onTimeUp={handleTimeUp} />
           <Puzzle
             emojis={puzzle.emojis}
             correctIndex={puzzle.correctIndex}
             onAnswer={handleAnswer}
+            puzzleNumber={puzzleCount + 1}
             key={puzzleKey}
           />
         </>
