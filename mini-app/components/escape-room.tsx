@@ -67,7 +67,6 @@ export default function EscapeRoom() {
 
   const startGame = () => {
     setPuzzleCount(0);
-    setGameKey(1);
     newPuzzle();
   };
 
@@ -94,7 +93,6 @@ export default function EscapeRoom() {
       )}
       {phase === "puzzle" && (
         <>
-          <div className="text-center font-semibold mb-2">Total Time: 60 seconds</div>
           <Timer key={gameKey} duration={60} onTimeUp={handleGameTimeUp} />
           <Timer key={puzzleKey} duration={6} onTimeUp={handleTimeUp} />
           <Puzzle
